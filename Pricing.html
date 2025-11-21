@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - InboXpert</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .pricing-header h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pricing-header p {
+            font-size: 20px;
+            color: #9CA3AF;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background-color: #1F2937;
+            border: 2px solid #374151;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #6366F1;
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: #6366F1;
+            background: linear-gradient(135deg, #1F2937, #2D1B69);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .pricing-tier {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F9FAFB;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6366F1;
+            margin-bottom: 5px;
+        }
+
+        .pricing-price span {
+            font-size: 20px;
+            color: #9CA3AF;
+        }
+
+        .pricing-description {
+            color: #9CA3AF;
+            margin-bottom: 30px;
+            min-height: 40px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: #E5E7EB;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: #10B981;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .pricing-features li.disabled {
+            color: #6B7280;
+            text-decoration: line-through;
+        }
+
+        .pricing-features li.disabled::before {
+            content: "✗";
+            color: #6B7280;
+        }
+
+        .pricing-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pricing-button.primary {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+        }
+
+        .pricing-button.primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .pricing-button.secondary {
+            background-color: #374151;
+            color: white;
+        }
+
+        .pricing-button.secondary:hover {
+            background-color: #4B5563;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            background-color: #F59E0B;
+            color: #111827;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-link a {
+            color: #6366F1;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .back-link a:hover {
+            color: #4F46E5;
+            text-decoration: underline;
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #1F2937;
+            border-radius: 16px;
+        }
+
+        .faq-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #F9FAFB;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #111827;
+            border-radius: 8px;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: bold;
+            color: #E5E7EB;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <!-- Header -->
+        <div class="pricing-header">
+            <h1>💎 Simple, Transparent Pricing</h1>
+            <p>Choose the plan that's right for you. Upgrade or downgrade anytime.</p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+            <!-- Free Tier -->
+            <div class="pricing-card">
+                <div class="pricing-tier">Free</div>
+                <div class="pricing-price">$0<span>/month</span></div>
+                <div class="pricing-description">Perfect for trying out InboXpert</div>
+                
+                <ul class="pricing-features">
+                    <li>1 Gmail account</li>
+                    <li>10 emails per sync</li>
+                    <li>Basic inbox triage</li>
+                    <li>Manual meeting scheduling</li>
+                    <li class="disabled">AI lead detection</li>
+                    <li class="disabled">Auto-proposals</li>
+                    <li class="disabled">Daily brief</li>
+                </ul>
+
+                <button class="pricing-button secondary" onclick="window.location.href='index.html'">
+                    Get Started Free
+                </button>
+            </div>
+
+            <!-- Pro Tier -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">🔥 MOST POPULAR</div>
+                <div class="pricing-tier">Pro</div>
+                <div class="pricing-price">$29<span>/month</span></div>
+                <div class="pricing-description">For professionals who need power</div>
+                
+                <ul class="pricing-features">
+                    <li>3 Gmail accounts</li>
+                    <li>Unlimited emails</li>
+                    <li>AI lead detection</li>
+                    <li>Smart meeting proposals</li>
+                    <li>Daily brief dashboard</li>
+                    <li>Priority support</li>
+                    <li>Advanced analytics</li>
+                </ul>
+
+                <button class="pricing-button primary" onclick="alert('🚀 Subscriptions coming soon! Join the waitlist to be notified.')">
+                    Upgrade to Pro <span class="coming-soon">COMING SOON</span>
+                </button>
+            </div>
+
+            <!-- Business Tier -->
+            <div class="pricing-card">
+                <div class="pricing-tier">Business</div>
+                <div class="pricing-price">$79<span>/month</span></div>
+                <div class="pricing-description">For teams and power users</div>
+                
+                <ul class="pricing-features">
+                    <li>10 Gmail accounts</li>
+                    <li>Team collaboration</li>
+                    <li>Custom branding</li>
+                    <li>API access</li>
+                    <li>Dedicated support</li>
+                    <li>SSO & advanced security</li>
+                    <li>Custom integrations</li>
+                </ul>
+
+                <button class="pricing-button secondary" onclick="alert('🚀 Subscriptions coming soon! Join the waitlist to be notified.')">
+                    Contact Sales <span class="coming-soon">COMING SOON</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I switch plans anytime?</div>
+                <div class="faq-answer">Yes! Upgrade or downgrade your plan at any time. Changes take effect immediately.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is my email data secure?</div>
+                <div class="faq-answer">Absolutely. We use OAuth 2.0 authentication and never store your emails on our servers. We only read what's necessary to provide the service.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What payment methods do you accept?</div>
+                <div class="faq-answer">We accept all major credit cards (Visa, Mastercard, Amex) via Stripe. We also support PayPal for annual plans.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do you offer refunds?</div>
+                <div class="faq-answer">Yes! We offer a 30-day money-back guarantee. If you're not satisfied, we'll refund you in full, no questions asked.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">When will subscriptions be available?</div>
+                <div class="faq-answer">We're working hard to launch paid subscriptions! Join our waitlist to be notified when they're ready.</div>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="index.html">← Back to Inbox</a>
+        </div>
+    </div>
+</body>
+</html>
+```

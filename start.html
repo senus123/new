@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start - Mini Inbox</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .start-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .start-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            max-width: 600px;
+            box-shadow: var(--shadow-xl), var(--shadow-glow-cyan);
+        }
+
+        .start-logo {
+            font-size: 5rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .start-title {
+            font-size: var(--font-size-3xl);
+            background: var(--gradient-cyan-purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .start-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .big-btn {
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: none;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-demo {
+            background: var(--gradient-cyan-purple);
+            color: var(--text-primary);
+        }
+
+        .btn-demo:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow-cyan);
+        }
+
+        .btn-login {
+            background: var(--glass-bg);
+            border: 2px solid var(--color-cyan);
+            color: var(--color-cyan);
+        }
+
+        .btn-login:hover {
+            background: var(--color-cyan);
+            color: var(--bg-deep-charcoal);
+            transform: translateY(-4px);
+        }
+
+        .btn-signup {
+            background: var(--gradient-purple-pink);
+            color: var(--text-primary);
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow-purple);
+        }
+
+        .info-box {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid var(--color-cyan);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="start-container">
+        <div class="start-card">
+            <div class="start-logo">🚀</div>
+            <h1 class="start-title">Welcome to Mini Inbox</h1>
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                Choose how you want to get started
+            </p>
+
+            <div class="start-buttons">
+                <button class="big-btn btn-demo" onclick="demoMode()">
+                    ⚡ Quick Demo (No Login Required)
+                </button>
+
+                <a href="signup.html" class="big-btn btn-signup">
+                    ✨ Create New Account
+                </a>
+
+                <a href="login.html" class="big-btn btn-login">
+                    🔐 Login to Existing Account
+                </a>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Tip:</strong> Use "Quick Demo" to see the design immediately without any setup!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function demoMode() {
+            // Set demo login
+            sessionStorage.setItem('isLoggedIn', 'true');
+            sessionStorage.setItem('userName', 'Demo User');
+            sessionStorage.setItem('userEmail', 'demo@example.com');
+
+            // Redirect to app
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+
+</html>

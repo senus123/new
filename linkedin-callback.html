@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LinkedIn OAuth Callback</title>
+  <style>body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;background:#f6f9fc;color:#111;padding:40px;} .card{max-width:680px;margin:0 auto;background:white;padding:20px;border-radius:8px;box-shadow:0 6px 20px rgba(16,24,40,.08)}</style>
+</head>
+<body>
+  <div class="card">
+    <h2>LinkedIn OAuth Callback</h2>
+    <p>This page receives the LinkedIn redirect after authentication and forwards the result back to the opener window.</p>
+    <pre id="info"></pre>
+    <p id="msg">Processing...</p>
+  </div>
+
+  <script>
+    function parseQuery(q) {
+      const params = new URLSearchParams(q);
+      const obj = {};
+      for (const [k,v] of params.entries()) obj[k]=v;
+      return obj;
+    }
+
+    (function(){
+      const infoEl = document.getElementById('info');
+      const msgEl = document.getElementById('msg');
+      const params = parseQuery(location.search);
+      infoEl.textContent = JSON.stringify(params, null, 2);
+
+      const payload = {
+        source: 'linkedin_oauth',
+        code: params.code || null,
+        state: params.state || null,
+        error: params.error || null
+      };
+
+      // Post message to opener if present
+      try {
+        if (window.opener && !window.opener.closed) {
+          window.opener.postMessage(payload, window.location.origin);
+          msgEl.textContent = 'Authorization details sent to the application. You can close this window.';
+        } else {
+          msgEl.textContent = 'No opener detected. You can copy the code manually from above.';
+        }
+      } catch (e) {
+        msgEl.textContent = 'Failed to message opener. Please copy the code manually.';
+        console.error('Callback postMessage error', e);
+      }
+    })();
+  </script>
+</body>
+</html>
